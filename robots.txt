@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://proxylistchecker.org/sitemap.xml

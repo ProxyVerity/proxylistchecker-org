@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proxy List Checker — a free proxy checker for your website</title>
+<meta name="description" content="Put a working HTTP, SOCKS4 and SOCKS5 proxy checker on your site with one script tag. No server, no account, no signup. Free, and it matches your design.">
+<link rel="canonical" href="https://proxylistchecker.org/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='11' cy='14' r='8' fill='%23fdd84f'/%3E%3Ccircle cx='21' cy='18' r='8' fill='%234fb8f5'/%3E%3C/svg%3E">
+<meta property="og:title" content="Proxy List Checker — a free proxy checker for your website">
+<meta property="og:description" content="One script tag puts a working proxy checker on your page. Free, themeable, nothing to install on your server.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://proxylistchecker.org/">
+<style>
+  :root{
+    --navy:#2d3e50; --yellow:#fdd84f; --blue:#4fb8f5; --blue-ink:#1d7fba;
+    --bg:#ffffff; --surface:#f6f8fa; --ink:#2d3e50; --muted:#637082;
+    --line:#dfe5ec; --radius:12px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141b24; --surface:#1b242f; --ink:#e8edf3; --muted:#9aa7b7;
+      --line:#2a3542; --blue-ink:#7cc8f7;
+    }
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink); overflow-wrap:break-word;
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  img,iframe,svg{ max-width:100%; }
+  pre{ max-width:100%; overflow-x:auto; }
+  a{ color:var(--blue-ink); }
+  .wrap{ max-width:62rem; margin:0 auto; padding:0 20px; }
+
+  header{ padding:34px 0 0; }
+  .logo{ width:230px; height:auto; display:block; }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .logo{ filter:brightness(0) invert(1) opacity(.92); }
+  }
+
+  .hero{ padding:30px 0 10px; }
+  h1{ font-size:clamp(1.8rem,4.6vw,2.7rem); line-height:1.15; margin:0 0 .5rem; letter-spacing:-.02em; }
+  .lede{ font-size:1.12rem; color:var(--muted); max-width:42rem; margin:0 0 1.4rem; }
+  .pills{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 1.6rem; padding:0; list-style:none; }
+  .pills li{ font-size:.85rem; background:var(--surface); border:1px solid var(--line);
+             border-radius:999px; padding:5px 12px; color:var(--muted); }
+
+  .card{ background:var(--surface); border:1px solid var(--line);
+         border-radius:var(--radius); padding:20px; margin:0 0 22px; }
+  .stage{ background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:14px; }
+
+  h2{ font-size:1.32rem; margin:2.6rem 0 .7rem; letter-spacing:-.01em; }
+  h3{ font-size:1.02rem; margin:1.5rem 0 .4rem; }
+  p{ margin:.75rem 0; }
+
+  pre{ background:#1d2630; color:#e6edf7; border-radius:10px; padding:15px;
+       font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; margin:0; }
+  code{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  p code,td code,li code{ background:var(--surface); border:1px solid var(--line);
+       border-radius:5px; padding:1px 5px; font-size:.86em; }
+
+  .snippet-bar{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:0 0 10px; }
+  .snippet-bar label{ font-size:.86rem; color:var(--muted); display:flex; align-items:center; gap:6px; }
+  select,input[type=color]{ font:inherit; font-size:.86rem; padding:5px 7px;
+       border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink); }
+  input[type=color]{ width:42px; height:30px; padding:2px; }
+  button{ font:inherit; font-size:.86rem; font-weight:600; cursor:pointer; border:0;
+       border-radius:8px; padding:7px 13px; background:var(--navy); color:#fff; }
+  button:hover{ background:#1f2d3c; }
+
+  .two{ display:grid; gap:22px; grid-template-columns:1fr; }
+  @media (min-width:840px){ .two{ grid-template-columns:1fr 1fr; } }
+  .two > *{ min-width:0; }
+
+  .table-wrap{ overflow-x:auto; }
+  table{ width:100%; border-collapse:collapse; font-size:.9rem; }
+  .table-wrap table{ min-width:32rem; }
+  th,td{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th{ font-size:.76rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+
+  .note{ border-left:3px solid var(--yellow); padding:2px 0 2px 14px; }
+  footer{ border-top:1px solid var(--line); margin-top:54px; padding:26px 0 46px;
+          font-size:.9rem; color:var(--muted); }
+  footer a{ color:var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <img class="logo" src="logo.png" width="560" height="249" alt="Proxy List Checker">
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>Put a proxy checker on your site</h1>
+    <p class="lede">One script tag. Your visitors paste a list of proxies, each one is
+    tested against HTTP, SOCKS4 and SOCKS5, and the results come back on a page they can
+    bookmark or share. Nothing runs on your server.</p>
+    <ul class="pills">
+      <li>Free</li><li>No account</li><li>No signup for your visitors</li>
+      <li>Nothing to install</li><li>Matches your colours</li>
+    </ul>
+  </section>
+
+  <div class="card">
+    <div class="stage">
+      <script src="https://api.proxyverity.com/widget/embed.js"
+              async
+              data-width="100%"
+              data-height="520"
+              data-theme="auto"
+              data-accent="#4fb8f5"
+              data-radius="10"
+              data-font="system"></script>
+    </div>
+  </div>
+
+  <h2>Install it in about thirty seconds</h2>
+  <p>Paste this where you want the checker to appear. That is the whole installation —
+  there is no build step, no package, no API key.</p>
+
+  <div class="card">
+    <div class="snippet-bar">
+      <label>Theme
+        <select id="o-theme">
+          <option value="auto" selected>auto</option>
+          <option value="light">light</option>
+          <option value="dark">dark</option>
+        </select>
+      </label>
+      <label>Accent <input type="color" id="o-accent" value="#4fb8f5"></label>
+      <label>Width
+        <select id="o-width">
+          <option value="100%" selected>100%</option>
+          <option value="640">640px</option>
+          <option value="480">480px</option>
+        </select>
+      </label>
+      <button type="button" id="o-copy">Copy</button>
+    </div>
+    <pre><code id="snippet"></code></pre>
+  </div>
+
+  <div class="two">
+    <div>
+      <h2>What it costs you</h2>
+      <p>Nothing, and there is no catch worth hiding. The widget asks for exactly one
+      thing: a small line under it reading <em>Proxy checker by ProxyVerity</em>, with a
+      link. Keeping that line visible is the condition of use.</p>
+      <p class="note">We say this plainly because you will see it the moment you paste
+      the tag, and a surprise is a worse start than a sentence.</p>
+    </div>
+    <div>
+      <h2>Who puts it up</h2>
+      <p>Sites that publish proxy lists, so readers can check a list before trusting it.
+      Scraping and automation blogs, where a working tool beats another screenshot.
+      Webmaster tool collections, which is simply what the thing is.</p>
+      <p>If your readers already paste proxies into something, they may as well do it
+      without leaving your page.</p>
+    </div>
+  </div>
+
+  <h2>It can look like your site, not ours</h2>
+  <p>Colours, corner radius and typeface are attributes on the tag. The palette carries
+  through to the results page too, so nothing reverts to our styling at the moment your
+  visitor is reading their results.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Attribute</th><th>Values</th><th>Default</th></tr></thead>
+      <tbody>
+        <tr><td><code>data-theme</code></td><td><code>light</code>, <code>dark</code>, <code>auto</code></td><td><code>light</code></td></tr>
+        <tr><td><code>data-accent</code></td><td><code>#rgb</code> or <code>#rrggbb</code></td><td><code>#2563eb</code></td></tr>
+        <tr><td><code>data-bg</code></td><td>hex, or <code>transparent</code></td><td>theme's</td></tr>
+        <tr><td><code>data-fg</code></td><td>hex</td><td>theme's</td></tr>
+        <tr><td><code>data-border</code></td><td>hex</td><td>theme's</td></tr>
+        <tr><td><code>data-radius</code></td><td><code>0</code>–<code>24</code></td><td><code>6</code></td></tr>
+        <tr><td><code>data-font</code></td><td><code>system</code>, <code>sans</code>, <code>serif</code>, <code>mono</code></td><td><code>sans</code></td></tr>
+        <tr><td><code>data-width</code></td><td>any CSS width</td><td><code>100%</code></td></tr>
+        <tr><td><code>data-height</code></td><td>px or percent</td><td><code>520</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Colours are checked on our side; anything that is not a plain hex value quietly
+  falls back to the theme's own, because these end up inside a stylesheet. The full
+  reference, including the batching options for long lists, is in the
+  <a href="https://proxyverity.com/proxy-checker-widget/">widget documentation</a>, and
+  there is a <a href="https://proxyverity.github.io/Proxy-Checker-Widget/">visual builder</a>
+  with every option and a live preview.</p>
+
+  <h2>Prefer not to embed anything?</h2>
+  <p>Then just use the hosted one. The
+  <a href="https://proxyverity.com/proxy-checker/">ProxyVerity proxy checker</a> is the
+  same engine without the script tag, and the
+  <a href="https://proxyverity.com/free-proxy-list/">free proxy list</a> is a continuously
+  re-checked table you can filter by country, protocol and anonymity level — useful for
+  seeing what a live list actually looks like.</p>
+
+  <h3>Also available as a package</h3>
+  <p>If you build pages rather than paste into them:
+  <code>npm install proxyverity-widget</code> or
+  <code>composer require proxyverity/proxy-checker-widget</code>. Both are thin wrappers
+  that build the same tag; neither carries a copy of the checker.</p>
+
+</main>
+
+<footer class="wrap">
+  <p><strong>proxylistchecker.org</strong> is run by the team behind
+  <a href="https://proxyverity.com/">ProxyVerity</a>, which is where the checker itself
+  lives. We mention it rather than pretending otherwise.</p>
+  <p>Source for the widget:
+  <a href="https://github.com/ProxyVerity/Proxy-Checker-Widget">GitHub</a>.</p>
+</footer>
+
+<script>
+(function(){
+  var theme = document.getElementById('o-theme'),
+      accent = document.getElementById('o-accent'),
+      width = document.getElementById('o-width'),
+      out = document.getElementById('snippet'),
+      copy = document.getElementById('o-copy');
+
+  function build(){
+    var lines = ['<script src="https://api.proxyverity.com/widget/embed.js"',
+                 '        async'];
+    if (width.value !== '100%') lines.push('        data-width="' + width.value + '"');
+    lines.push('        data-height="520"');
+    if (theme.value !== 'light') lines.push('        data-theme="' + theme.value + '"');
+    if (accent.value.toLowerCase() !== '#2563eb') lines.push('        data-accent="' + accent.value + '"');
+    return lines.join('\n') + '><\/script>';
+  }
+  function render(){ out.textContent = build(); }
+
+  [theme, accent, width].forEach(function(el){
+    el.addEventListener('input', render);
+    el.addEventListener('change', render);
+  });
+  copy.addEventListener('click', function(){
+    var text = build();
+    function done(){ copy.textContent = 'Copied'; setTimeout(function(){ copy.textContent = 'Copy'; }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function(){});
+    } else {
+      var t = document.createElement('textarea');
+      t.value = text; document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); done(); } catch(e) {}
+      t.remove();
+    }
+  });
+  render();
+})();
+</script>
+
+</body>
+</html>
