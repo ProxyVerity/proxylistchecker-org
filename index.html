@@ -198,11 +198,23 @@
   re-checked table you can filter by country, protocol and anonymity level — useful for
   seeing what a live list actually looks like.</p>
 
+  <h2>On WordPress? There is a plugin</h2>
+  <p>Search for <strong>ProxyVerity Proxy Checker</strong> under Plugins → Add New, or get
+  it from the
+  <a href="https://wordpress.org/plugins/proxyverity-proxy-checker/">WordPress plugin
+  directory</a>. Then drop in the <strong>Proxy Checker</strong> block, or the
+  <code>[proxyverity_checker]</code> shortcode, and set the colours site-wide under
+  Settings.</p>
+  <p class="note">The plugin adds no database tables, no cron jobs and no server-side
+  requests. It writes the same tag as above and the hosted checker does the rest — which
+  also means fixes reach you without you updating anything.</p>
+
   <h3>Also available as a package</h3>
   <p>If you build pages rather than paste into them:
   <code>npm install proxyverity-widget</code> or
   <code>composer require proxyverity/proxy-checker-widget</code>. Both are thin wrappers
-  that build the same tag; neither carries a copy of the checker.</p>
+  that build the same tag; neither carries a copy of the checker. Source and mirrors:
+  <a href="https://github.com/ProxyVerity/Proxy-Checker-Widget">GitHub</a>.</p>
 
 </main>
 
